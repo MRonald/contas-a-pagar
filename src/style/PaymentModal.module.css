@@ -1,0 +1,47 @@
+.paymentModalWrapper {
+    width: 400px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    background-color: white;
+}
+.paymentModalWrapper header {
+    padding: 15px;
+
+    background-color: #474971;
+    color: white;
+
+    font-size: 1.2rem;
+}
+.paymentModalWrapper header .userName {
+    color: yellow;
+}
+.paymentModalWrapper main {
+    padding: 15px 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.paymentModalWrapper main input[type="text"] {
+    font-size: 1.2rem;
+    width: 70%;
+}
+.paymentModalWrapper main select {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    width: 71%;
+}
+.paymentModalWrapper main button {
+    margin-top: 15px;
+    padding: 3px;
+
+    display: inline-table;
+    
+    font-size: 1.1rem;
+    
+    cursor: pointer;
+}
