@@ -1,0 +1,44 @@
+.userWrapper {
+    width: 40%;
+    height: 150px;
+    
+    margin: auto;
+    padding: 0 35px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: linear-gradient(to bottom, #37395A, #252638);
+    border: 1px solid white;
+}
+.userWrapper .heroUser {
+    display: flex;
+    align-items: center;
+}
+.userWrapper .heroUser .imgWrapper {
+    width: 90px;
+    height: 90px;
+
+    margin-right: 15px;
+
+    border-radius: 100%;
+    overflow: hidden;
+}
+.userWrapper .heroUser .imgWrapper img {
+    width: 100%;
+    height: 100%;
+}
+.userWrapper .heroUser .infoUser {
+    color: white;
+    font-size: 1.2rem;
+}
+.userWrapper button {
+    padding: 5px;
+
+    display: inline-table;
+    
+    font-size: 0.9rem;
+    
+    cursor: pointer;
+}
