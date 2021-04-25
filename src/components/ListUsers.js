@@ -20,7 +20,7 @@ export default function ListUsers() {
                 {users.map(
                     user => (
                         <li key={user.id}>
-                            <User 
+                            <User
                                 srcImg={user.img}
                                 name={user.name}
                                 id={user.id}
