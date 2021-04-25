@@ -1,11 +1,15 @@
-// import PaymentModal from './components/PaymentModal';
-import User from './components/User';
 import './style/global.css';
 
+import ListUsers from './components/ListUsers';
+// import PaymentModal from './components/PaymentModal';
+
+
 function App() {
+
+  
   return (
     <div className="App">
-      <User />
+      <ListUsers />
       {/* <PaymentModal /> */}
     </div>
   );
