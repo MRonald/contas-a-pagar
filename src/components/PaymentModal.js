@@ -2,11 +2,14 @@ import React from 'react';
 
 import styles from '../style/PaymentModal.module.css';
 
-export default function PaymentModal() {
+export default function PaymentModal(props) {
     return (
         <div className={styles.paymentModalWrapper}>
             <header>
-                Pagamento para <span className={styles.userName}>Nome do Usuário</span>
+                <span>
+                    Pagamento para <span className={styles.userName}>{props.user.name}</span>
+                </span>
+                <span className={styles.btnCloseModal} onClick={props.closeModal}>X</span>
             </header>
             <main>
                 <input type="text"/>

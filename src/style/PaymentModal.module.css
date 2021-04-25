@@ -15,9 +15,16 @@
     color: white;
 
     font-size: 1.2rem;
+
+    display: flex;
+    justify-content: space-between;
 }
 .paymentModalWrapper header .userName {
     color: yellow;
+}
+.paymentModalWrapper .btnCloseModal {
+    padding: 0 5px;
+    cursor: pointer;
 }
 .paymentModalWrapper main {
     padding: 15px 0;
