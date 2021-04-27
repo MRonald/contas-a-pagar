@@ -9,7 +9,7 @@ export default function PaymentModal(props) {
                 <span>
                     Pagamento para <span className={styles.userName}>{props.user.name}</span>
                 </span>
-                <span className={styles.btnCloseModal} onClick={props.closeModal}>X</span>
+                <span className={styles.btnCloseModal} onClick={props.functionCloseModal}>X</span>
             </header>
             <main>
                 <input type="text"/>
