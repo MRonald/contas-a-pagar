@@ -34,10 +34,12 @@
     align-items: center;
 }
 .paymentModalWrapper main input[type="text"] {
+    padding: 3px 0;
     font-size: 1.2rem;
     width: 70%;
 }
 .paymentModalWrapper main select {
+    padding: 3px 0;
     margin-top: 15px;
     font-size: 1.2rem;
     width: 71%;
