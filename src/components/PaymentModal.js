@@ -50,6 +50,19 @@ export default function PaymentModal(props) {
         return valueFormatted;
     }
 
+    function validateForm() {
+        const inputValuePayment = document.getElementById('valuePayment');
+        const valueInputEmpty = document.getElementById('valueInputEmpty');
+        if (inputValuePayment.value === "") {
+            valueInputEmpty.style.display = 'block';
+            inputValuePayment.style.border = '1px solid red';
+        } else {
+            valueInputEmpty.style.display = 'none';
+            inputValuePayment.style.border = '1px solid red';
+            toggleMakePayment();
+        }
+    }
+
     function toggleMakePayment() {
         setMakePayment(!makePayment);
     }
@@ -70,7 +83,15 @@ export default function PaymentModal(props) {
                             placeholder="R$ 0,00"
                             onChange={(e) => e.target.value = maskValue(e.target.value)}
                             maxLength="30"
+                            id="valuePayment"
+                            autoComplete="off"
                         />
+                        <p
+                            className={styles.valueInputEmpty}
+                            id="valueInputEmpty"
+                        >
+                            Preencha este campo
+                        </p>
                         <select>
                             {cards.map(
                                 card => (
@@ -80,7 +101,7 @@ export default function PaymentModal(props) {
                                 )
                             )}
                         </select>
-                        <button onClick={toggleMakePayment}>Pagar</button>
+                        <button onClick={validateForm}>Pagar</button>
                     </main>
                 </>
             ) : (

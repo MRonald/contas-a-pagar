@@ -34,15 +34,26 @@
     align-items: center;
 }
 .paymentModalWrapper main input[type="text"] {
-    padding: 3px 0;
+    padding: 3px;
     font-size: 1.2rem;
-    width: 70%;
+    width: 69%;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+.paymentModalWrapper main .valueInputEmpty {
+    display: none;
+    margin-top: 1px;
+    width: 71%;
+    text-align: right;
+    color: red;
 }
 .paymentModalWrapper main select {
     padding: 3px 0;
     margin-top: 15px;
     font-size: 1.2rem;
     width: 71%;
+    border: 1px solid gray;
+    border-radius: 5px;
 }
 .paymentModalWrapper main button {
     margin-top: 15px;
