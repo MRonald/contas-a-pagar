@@ -18,6 +18,35 @@ export default function PaymentModal(props) {
         },
     ];
 
+    function maskValue(valueInput) {
+        valueInput = parseInt(valueInput.replace(/\D/g, '')).toString();
+        let valueFormatted = '';
+        if (valueInput === '0' || valueInput === 'NaN') {
+            valueFormatted = '';
+        } else if (valueInput.length === 1) {
+            valueFormatted += '00' + valueInput;
+        } else if (valueInput.length === 2) {
+            valueFormatted += '0' + valueInput;
+        } else {
+            valueFormatted = valueInput;
+        }
+        if (valueFormatted.length > 0) {
+            const lastTwo = valueFormatted.substr(-2);
+            valueFormatted = valueFormatted.substr(0, valueFormatted.length - 2) + ',' + lastTwo;
+            let integerNumber = valueFormatted.substr(0, valueFormatted.indexOf(','));
+            let indexDot = integerNumber.length - 3;
+            while (indexDot > 0) {
+                const initialPart = integerNumber.substr(indexDot, integerNumber.length);
+                const finalPart = integerNumber.substr(0, indexDot);
+                integerNumber = finalPart + '.' + initialPart;
+                valueFormatted = integerNumber + ',' + lastTwo;
+                indexDot -= 3;
+            }
+            valueFormatted = 'R$ ' + valueFormatted;
+        }
+        return valueFormatted;
+    }
+
     return (
         <div className={styles.paymentModalWrapper}>
             <header>
@@ -27,7 +56,12 @@ export default function PaymentModal(props) {
                 <span className={styles.btnCloseModal} onClick={props.functionCloseModal}>X</span>
             </header>
             <main>
-                <input type="text" placeholder="R$ 0,00"/>
+                <input
+                    type="text"
+                    placeholder="R$ 0,00"
+                    onChange={(e) => e.target.value = maskValue(e.target.value)}
+                    maxLength="30"
+                />
                 <select>
                     {cards.map(
                         card => (
