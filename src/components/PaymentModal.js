@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 import styles from '../style/PaymentModal.module.css';
 
@@ -9,15 +10,17 @@ export default function PaymentModal(props) {
     const cards = [
         // valid card
         {
-          card_number: '1111111111111111',
-          cvv: 789,
-          expiry_date: '01/18',
+            id: 0,
+            card_number: '1111111111111111',
+            cvv: 789,
+            expiry_date: '01/18',
         },
         // invalid card
         {
-          card_number: '4111111111111234',
-          cvv: 123,
-          expiry_date: '01/20',
+            id: 1,
+            card_number: '4111111111111234',
+            cvv: 123,
+            expiry_date: '01/20',
         },
     ];
 
@@ -53,12 +56,46 @@ export default function PaymentModal(props) {
     function validateForm() {
         const inputValuePayment = document.getElementById('valuePayment');
         const valueInputEmpty = document.getElementById('valueInputEmpty');
+        const idSelectedCard = document.getElementById('idSelectedCard');
         if (inputValuePayment.value === "") {
             valueInputEmpty.style.display = 'block';
             inputValuePayment.style.border = '1px solid red';
         } else {
             valueInputEmpty.style.display = 'none';
-            inputValuePayment.style.border = '1px solid red';
+            inputValuePayment.style.border = '1px solid gray';
+            processPayment(cards[idSelectedCard.value], props.user.id, inputValuePayment.value);
+        }
+    }
+
+    function processPayment(selectedCard, destinationUserId, value) {
+        const buttonPay = document.getElementById('buttonPay');
+        const imgLoading = document.getElementById('imgLoading');
+        buttonPay.style.display = 'none';
+        imgLoading.style.display = 'block';
+        if (selectedCard.id !== cards.length - 1) {
+            axios.post("https://run.mocky.io/v3/533cd5d7-63d3-4488-bf8d-4bb8c751c989", {
+                "card_number": selectedCard.card_number,
+                "cvv": selectedCard.cvv,
+                "expiry_date": selectedCard.expiry_date,
+                "destination_user_id": destinationUserId,
+                "value": value
+            }).then(
+                response => {
+                    if (response.data.success) {
+                        setSuccessPayment(true);
+                    } else {
+                        setSuccessPayment(false);
+                    }
+                    toggleMakePayment();
+                }
+            ).catch(
+                () => {
+                    setSuccessPayment(false);
+                    toggleMakePayment();
+                }
+            );
+        } else {
+            setSuccessPayment(false);
             toggleMakePayment();
         }
     }
@@ -92,16 +129,22 @@ export default function PaymentModal(props) {
                         >
                             Preencha este campo
                         </p>
-                        <select>
+                        <select id="idSelectedCard">
                             {cards.map(
                                 card => (
-                                    <option>
+                                    <option value={card.id} key={card.id}>
                                         Cartão com o final {card.card_number.substr(-4)}
                                     </option>
                                 )
                             )}
                         </select>
-                        <button onClick={validateForm}>Pagar</button>
+                        <button onClick={validateForm} id="buttonPay">Pagar</button>
+                        <img
+                            src="imgs/loading.gif"
+                            alt="loading"
+                            id="imgLoading"
+                            className={styles.imgLoading}
+                        />
                     </main>
                 </>
             ) : (

@@ -65,6 +65,11 @@
 
     cursor: pointer;
 }
+.paymentModalWrapper main .imgLoading {
+    margin-top: 15px;
+    height: 40px;
+    display: none;
+}
 .paymentModalWrapper main .resultPayload {
     margin: 20px auto;
 }
