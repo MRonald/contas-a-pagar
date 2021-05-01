@@ -1,3 +1,10 @@
 .listUsers {
     list-style: none;
 }
+.loadingMainWrapper {
+    width: 100%;
+    text-align: center;
+}
+.loadingMain {
+    height: 120px;
+}

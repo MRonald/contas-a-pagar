@@ -65,7 +65,7 @@
 
     cursor: pointer;
 }
-.paymentModalWrapper main .imgLoading {
+.paymentModalWrapper main .loadingPayment {
     margin-top: 15px;
     height: 40px;
     display: none;

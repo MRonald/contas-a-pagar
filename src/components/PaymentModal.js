@@ -140,10 +140,10 @@ export default function PaymentModal(props) {
                         </select>
                         <button onClick={validateForm} id="buttonPay">Pagar</button>
                         <img
-                            src="imgs/loading.gif"
+                            src="imgs/loading-payment.gif"
                             alt="loading"
                             id="imgLoading"
-                            className={styles.imgLoading}
+                            className={styles.loadingPayment}
                         />
                     </main>
                 </>
