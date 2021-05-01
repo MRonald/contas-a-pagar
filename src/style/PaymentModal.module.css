@@ -54,3 +54,9 @@
 
     cursor: pointer;
 }
+.paymentModalWrapper main .resultPayload {
+    margin: 20px auto;
+}
+.paymentModalWrapper main .resultPayload .bold {
+    font-weight: bolder;
+}

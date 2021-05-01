@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import styles from '../style/PaymentModal.module.css';
 
 export default function PaymentModal(props) {
+    const [makePayment, setMakePayment] = useState(false);
+    const [successPayment, setSuccessPayment] = useState(false);
+
     const cards = [
         // valid card
         {
@@ -47,32 +50,56 @@ export default function PaymentModal(props) {
         return valueFormatted;
     }
 
+    function toggleMakePayment() {
+        setMakePayment(!makePayment);
+    }
+
     return (
         <div className={styles.paymentModalWrapper}>
-            <header>
-                <span>
-                    Pagamento para <span className={styles.userName}>{props.user.name}</span>
-                </span>
-                <span className={styles.btnCloseModal} onClick={props.functionCloseModal}>X</span>
-            </header>
-            <main>
-                <input
-                    type="text"
-                    placeholder="R$ 0,00"
-                    onChange={(e) => e.target.value = maskValue(e.target.value)}
-                    maxLength="30"
-                />
-                <select>
-                    {cards.map(
-                        card => (
-                            <option>
-                                Cartão com o final {card.card_number.substr(-4)}
-                            </option>
-                        )
-                    )}
-                </select>
-                <button>Pagar</button>
-            </main>
+            {!makePayment ? (
+                <>
+                    <header>
+                        <span>
+                            Pagamento para <span className={styles.userName}>{props.user.name}</span>
+                        </span>
+                        <span className={styles.btnCloseModal} onClick={props.functionCloseModal}>X</span>
+                    </header>
+                    <main>
+                        <input
+                            type="text"
+                            placeholder="R$ 0,00"
+                            onChange={(e) => e.target.value = maskValue(e.target.value)}
+                            maxLength="30"
+                        />
+                        <select>
+                            {cards.map(
+                                card => (
+                                    <option>
+                                        Cartão com o final {card.card_number.substr(-4)}
+                                    </option>
+                                )
+                            )}
+                        </select>
+                        <button onClick={toggleMakePayment}>Pagar</button>
+                    </main>
+                </>
+            ) : (
+                <>
+                    <header>
+                        <span>Recibo de pagamento</span>
+                        <span className={styles.btnCloseModal} onClick={props.functionCloseModal}>X</span>
+                    </header>
+                    <main>
+                        <div className={styles.resultPayload}>
+                            {successPayment ? (
+                                <>O pagamento foi concluído com sucesso.</>
+                            ) : (
+                                <>O pagamento <span className={styles.bold}>não</span> foi concluído com sucesso.</>
+                            )}
+                        </div>
+                    </main>
+                </>
+            )}
         </div>
     );
 }
