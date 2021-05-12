@@ -19,7 +19,7 @@ export default function ListUsers() {
             response => {
                 setUsers(response.data);
                 setViewUsers(response.data.filter(
-                    user => parseInt(user.id) < 1007
+                    user => parseInt(user.id) < 1010
                 ));
             }
         );
